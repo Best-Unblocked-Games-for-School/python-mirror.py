@@ -9,7 +9,7 @@ if not GITHUB_TOKEN:
     raise ValueError("❌ Secret token is missing! Set MY_SECRET_TOKEN as an environment variable.")
 
 # Source users whose repos will be mirrored
-SOURCE_USERS = ["ubg98", "exampleuser2"]
+SOURCE_USERS = ["ubg98", "ubg44"]
 TARGET_USERNAME = "your_target_username"  # Change this to your GitHub username
 TARGET_ORG = None  # Change to your org name if pushing to an organization
 
