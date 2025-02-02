@@ -1,0 +1,30 @@
+name: Mirror GitHub Repos
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"  # Runs every 6 hours
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔹 Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: 🔹 Set Up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: 🔹 Install Git
+        run: sudo apt-get install -y git
+
+      - name: 🔹 Install Dependencies
+        run: pip install requests
+
+      - name: 🔹 Run Mirror Script
+        env:
+          MY_SECRET_TOKEN: ${{ secrets.GH_MIRROR_TOKEN }}  # GitHub Secret
+        run: python mirror.py
